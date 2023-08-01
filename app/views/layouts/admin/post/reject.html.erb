@@ -1,0 +1,6 @@
+<%= active_admin_form_for @post, url: admin_post_path(@post), method: :put do |f| %>
+  <%= f.inputs "Rejection Reason" do %>
+    <%= f.input :rejected_reason, as: :text, input_html: { rows: 5 } %>
+  <% end %>
+  <%= f.actions %>
+<% end %>
