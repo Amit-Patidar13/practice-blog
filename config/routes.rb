@@ -15,12 +15,12 @@ Rails.application.routes.draw do
   # mount ActiveAdmin::Engine => '/admin
 
   resources :posts do
-    member do
-      put :reject
-    end
     resources :comments, only: [:create, :destroy]
     resources :likes, only: [:create, :destroy]
   end
+
+  get "/users_post", to: "posts#users_post" 
+  # get "/user/:id/posts", to: "posts#users_post"
 
 
   # ActiveAdmin.routes(self, path: '/admin')

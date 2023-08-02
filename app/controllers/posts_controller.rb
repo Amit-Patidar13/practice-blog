@@ -31,6 +31,18 @@ class PostsController < ApplicationController
 		render json: { message: 'post deleted successfully.' }
 	end
 
+	def users_post
+		current_user_posts = current_user.posts
+		render json: { post: current_user_posts }, status: :ok
+	end
+	
+	# def users_post
+	# 	# current_user_posts = current_user.posts
+	# 	user = User.find(id: params[:id])
+	# 	user_post = user.posts
+	# 	render json: { post: user_post }, status: :ok
+	# end
+
 	private
 
 	def set_post

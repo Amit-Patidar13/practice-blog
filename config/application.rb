@@ -30,5 +30,7 @@ module Blog
       config.middleware.use ActionDispatch::Session::CookieStore
       config.middleware.use config.session_store, config.session_options
       config.middleware.use Rack::MethodOverride
+      config.autoload_paths << Rails.root.join('lib')
   end
+  # config.autoload_paths << Rails.root.join('lib')
 end

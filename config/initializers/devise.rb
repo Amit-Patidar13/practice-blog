@@ -322,4 +322,9 @@ Devise.setup do |config|
     ]
     jwt.expiration_time = 5.days.to_i
   end
+
+  config.warden do |manager|
+    manager.failure_app = CustomFailureApp
+  end
+  
 end
