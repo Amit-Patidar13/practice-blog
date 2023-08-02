@@ -11,8 +11,6 @@ class PostsController < ApplicationController
 
 	def create
 		@post = current_user.posts.new(post_params)
-		@post.status = 'pending'
-		@post.rejected_reason = "nil"
 		if @post.save
 			render json: { post: @post, message: 'post created successfully.' }
 		else
@@ -40,6 +38,6 @@ class PostsController < ApplicationController
 	end
 
 	def post_params
-		params.require(:post).permit(:name, :description, :status)
+		params.require(:post).permit(:name, :description, :status, :rejected_reason)
 	end
 end

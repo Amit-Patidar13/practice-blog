@@ -1,8 +1,8 @@
 class LikesController < ApplicationController
 	before_action :authenticate_user!
+  before_action :set_post, only: [:create, :destroy]
 
   def create
-    @post = Post.find(params[:post_id])
     @like = @post.likes.build(user: current_user)
 
     if @like.save
@@ -13,7 +13,6 @@ class LikesController < ApplicationController
   end
 
   def destroy
-    @post = Post.find(params[:post_id])
     @like = @post.likes.find_by(user: current_user)
 
     if @like&.destroy
@@ -22,4 +21,11 @@ class LikesController < ApplicationController
       render json: { message: 'Unable to unlike the post.' }, status: :unprocessable_entity
     end
   end
+
+  private 
+
+  def set_post
+    @post = Post.find(params[:post_id])
+  end
+
 end
