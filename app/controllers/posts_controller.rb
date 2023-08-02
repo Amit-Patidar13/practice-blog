@@ -11,8 +11,6 @@ class PostsController < ApplicationController
 
 	def create
 		@post = current_user.posts.new(post_params)
-		@post.status = 'pending'
-		@post.rejected_reason = "nil"
 		if @post.save
 			render json: { post: @post, message: 'post created successfully.' }
 		else
@@ -32,6 +30,18 @@ class PostsController < ApplicationController
 		@post.destroy
 		render json: { message: 'post deleted successfully.' }
 	end
+
+	def users_post
+		current_user_posts = current_user.posts
+		render json: { post: current_user_posts }, status: :ok
+	end
+	
+	# def users_post
+	# 	# current_user_posts = current_user.posts
+	# 	user = User.find(id: params[:id])
+	# 	user_post = user.posts
+	# 	render json: { post: user_post }, status: :ok
+	# end
 
 	private
 
